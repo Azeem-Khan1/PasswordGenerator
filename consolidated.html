@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator by Azeem Khan</title>
+    <style>
+
+        * {
+            background-color: #8d021f;
+            margin: 0;
+            padding: 0;
+        }
+
+        .parentCont {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .childCont {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 15px;
+            margin-top: 15px;
+        }
+
+
+        .logo {
+            position: relative;
+            width: 20vw;
+            min-width: 250px;
+            margin-top: 30px;
+        }
+
+        .lengthPWD {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        p {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 130%;
+            font-size: 16pt;
+            color: white;
+            margin: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+
+        }
+
+        label {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 130%;
+            color: white;
+        }
+
+        #params {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .lengthPWD input {
+            width: 50px;
+            min-width: 30px;
+            outline: none;
+            height: 40px;
+            line-height: 1.65;
+            display: block;
+            padding: 0;
+            margin: 0;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            background-color: #a31c39;
+            transition-duration: 0.3s;
+            text-align: center;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button
+        {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+
+        .lengthPWD input:hover,
+        .lengthPWD input:focus {
+            background-color:#c52b4c;
+        }
+
+        .container {
+            display: block;
+            position: relative;
+            left: 5%;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+            transition-duration: 0.3s;
+        }
+
+        /* custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            border-radius: 5px;
+            background-color: #eee;
+            transition-duration: 0.3s;
+        }
+
+        /* Peach bg on hover */
+        .container:hover input ~ .checkmark {
+            background-color: #c5536c;
+        }
+
+        /* Add red bg when checked */
+        .container input:checked ~ .checkmark {
+            background-color: #c52b4c;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .container .checkmark:after {
+            left: 6px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        button {
+            position: relative;
+            width: 300px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 130%;
+            color: white;
+            height: 40px;
+            border: none;
+            outline: none;
+            font-size: 14pt;
+            background-color: #a31c39;
+            border-radius: 8px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+        .buttonCont {
+            padding: none;
+            margin: none;
+            height: 50px;
+        }
+        button:hover {
+            background-color: #c52b4c;
+            width: 350px;
+            height: 50px;
+            font-size: 15pt;
+        }
+        #output {
+            position: relative;
+            text-align: center;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            width: 400px;
+            overflow-x: hidden;
+            overflow-y: none;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            margin-bottom: 30px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #a31c39;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c52b4c;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5536c;
+        }
+
+    </style>
+    <script>
+        
+        // Basic dictionary of all characters available for use
+        chars = {
+            "cap": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "low": "abcdefghijklmnopqrstuvwxyz",
+            "num": "0123456789",
+            "sym": "`~!@#$%^&*()-_=+[]{}|;:',.<>/?"
+        };
+
+        // Adds items from "chars" to "selectedChars" based on what preferences are checked by the user
+        function isChecked(id, key) {
+            if (typeof id === "string" && typeof key === "string") {
+                const checkbox = document.getElementById(id);
+
+                if (checkbox.checked) {
+                    selectedChars = selectedChars + chars[key];
+                }
+            }
+            else {
+                console.log("Invalid parameters");
+            }
+        }
+
+        // Random number generator used later for random password generation
+        function randomNum(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+
+        function generate() {
+            selectedChars = "";
+            isChecked("capCheck", "cap");
+            isChecked("lowCheck", "low");
+            isChecked("numCheck", "num");
+            isChecked("symCheck", "sym");
+            const outputField = document.getElementById("output");
+
+            const lengthPSWD = document.getElementById("numChar").value;
+
+            if (lengthPSWD == "" || lengthPSWD <= 2 || lengthPSWD > 99) {
+                outputField.innerHTML = "Length must be between 3 and 99 characters";
+            } else {
+                let pswd = "";
+                for (i = 0; i < lengthPSWD; i++) {
+                    if (selectedChars.length > 0) { // if the user has at least one preference selected
+                        let c = randomNum(0, selectedChars.length - 1);
+                        // Make the password appear one character at a time (extra animation)
+                        setTimeout(function () {
+                            pswd += selectedChars[c];
+                            outputField.innerHTML = pswd;
+                        }, i * 70); // delay between characters
+                    }
+                    else { // user does not have anything selected
+                        let err = "At least one checkbox must be selected";
+                        outputField.innerHTML = err;
+                        break;
+                    }
+                }
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="parentCont">
+        <div class="childCont">
+
+            <img src="password-generator-logo.png" alt="logo" class="logo">
+
+        </div>
+
+        <div class="childCont">
+
+            <div class="lengthPWD">
+
+                <p>Password length (characters)</p>
+                <input type="number" id="numChar" min="2" max="99" step="1" placeholder="--">
+    
+            </div>
+            
+        </div>
+        
+        <div class="childCont">
+
+            <div id="params">
+
+                <p>Content settings</p>
+    
+                <div id="checkboxes">
+    
+                    <label class="container">Capital letters
+                        <input type="checkbox" checked="checked" id="capCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label class="container">Lowercase letters
+                        <input type="checkbox" checked="checked" id="lowCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label class="container">Numbers
+                        <input type="checkbox" checked="checked" id="numCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label class="container">Symbols
+                        <input type="checkbox" checked="checked" id="symCheck">
+                        <span class="checkmark"></span>
+                    </label>
+    
+                </div>
+    
+            </div>
+
+        </div>
+
+        <div class="childCont buttonCont">
+            
+            <button class="generate" onclick="generate()">Generate Password</button>
+
+        </div>
+
+        <div class="childCont">
+
+            <h1 id="output"></h1>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
