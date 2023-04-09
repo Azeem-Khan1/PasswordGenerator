@@ -1,4 +1,3 @@
-
 // Basic dictionary of all characters available for use
 chars = {
     "cap": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -26,8 +25,12 @@ function randomNum(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min) + min);
 }
 
+function getLength(){
+    let passwordLen = document.getElementById('numChar').value;
+    return passwordLen
+}
 
-function generate() {
+function generate(passwordLen) {
     selectedChars = "";
     isChecked("capCheck", "cap");
     isChecked("lowCheck", "low");
@@ -35,13 +38,12 @@ function generate() {
     isChecked("symCheck", "sym");
     const outputField = document.getElementById("output");
 
-    const lengthPSWD = document.getElementById("numChar").value;
 
-    if (lengthPSWD == "" || lengthPSWD <= 2 || lengthPSWD > 99) {
+    if (passwordLen == "" || passwordLen <= 2 || passwordLen > 99) {
         outputField.innerHTML = "Length must be between 3 and 99 characters";
     } else {
         let pswd = "";
-        for (i = 0; i < lengthPSWD; i++) {
+        for (i = 0; i < passwordLen; i++) {
             if (selectedChars.length > 0) { // if the user has at least one preference selected
                 let c = randomNum(0, selectedChars.length - 1);
                 // Make the password appear one character at a time (extra animation)
@@ -58,4 +60,3 @@ function generate() {
         }
     }
 }
-  
