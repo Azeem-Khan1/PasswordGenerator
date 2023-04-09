@@ -4,43 +4,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
+    <title>Password Generator by Azeem Khan</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
-    <img src="password-generator-logo.png" alt="logo" class="logo">
-    <div class="lengthPWD">
-        <p>How many characters long should the password be?</p>
-        <input type="number" id="numChar" min="2" max="99" step="1" placeholder="--">
+    <div class="parentCont">
+        <div class="childCont">
+
+            <img src="password-generator-logo.png" alt="logo" class="logo">
+
+        </div>
+
+        <div class="childCont">
+
+            <div class="lengthPWD">
+
+                <p>Password length (characters)</p>
+                <input type="number" id="numChar" min="2" max="99" step="1" placeholder="--">
+    
+            </div>
+            
+        </div>
+        
+        <div class="childCont">
+
+            <div id="params">
+
+                <p>Content settings</p>
+    
+                <div id="checkboxes">
+    
+                    <label class="container">Capital letters
+                        <input type="checkbox" checked="checked" id="capCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label class="container">Lowercase letters
+                        <input type="checkbox" checked="checked" id="lowCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label class="container">Numbers
+                        <input type="checkbox" checked="checked" id="numCheck">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label class="container">Symbols
+                        <input type="checkbox" checked="checked" id="symCheck">
+                        <span class="checkmark"></span>
+                    </label>
+    
+                </div>
+    
+            </div>
+
+        </div>
+
+        <div class="childCont buttonCont">
+            
+            <button class="generate" onclick="generate()">Generate Password</button>
+
+        </div>
+
+        <div class="childCont">
+
+            <h1 id="output"></h1>
+
+        </div>
+
     </div>
 
-    
-    <div id="params">
-        <p>The password should contain:</p>
-        <div id="checkboxes">
-            <label class="container">Capital letters
-                <input type="checkbox" checked="checked" id="capCheck">
-                <span class="checkmark"></span>
-            </label>
-            
-            <label class="container">Lowercase letters
-                <input type="checkbox" checked="checked" id="lowCheck">
-                <span class="checkmark"></span>
-            </label>
-            
-            <label class="container">Numbers
-                <input type="checkbox" checked="checked" id="numCheck">
-                <span class="checkmark"></span>
-            </label>
-            
-            <label class="container">Symbols
-                <input type="checkbox" checked="checked" id="symCheck">
-                <span class="checkmark"></span>
-            </label>
-        </div>
-    </div>
-    <button class="generate" onclick="generate()">Generate Password</button>
-    <h1 id="output"></h1>
 </body>
 </html>

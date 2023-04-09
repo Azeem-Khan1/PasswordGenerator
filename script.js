@@ -1,3 +1,5 @@
+
+// Basic dictionary of all characters available for use
 chars = {
     "cap": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     "low": "abcdefghijklmnopqrstuvwxyz",
@@ -5,8 +7,7 @@ chars = {
     "sym": "`~!@#$%^&*()-_=+[]{}|;:',.<>/?"
 };
 
-
-
+// Adds items from "chars" to "selectedChars" based on what preferences are checked by the user
 function isChecked(id, key) {
     if (typeof id === "string" && typeof key === "string") {
         const checkbox = document.getElementById(id);
@@ -16,13 +17,15 @@ function isChecked(id, key) {
         }
     }
     else {
-        console.log("Invalid parameters")
+        console.log("Invalid parameters");
     }
 }
 
-function randomIntFromInterval(min, max) { // min and max included 
+// Random number generator used later for random password generation
+function randomNum(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min) + min);
 }
+
 
 function generate() {
     selectedChars = "";
@@ -36,18 +39,23 @@ function generate() {
 
     if (lengthPSWD == "" || lengthPSWD <= 2 || lengthPSWD > 99) {
         outputField.innerHTML = "Length must be between 3 and 99 characters";
-    }
-    else {
-        pswd = "";
-        for (let i = 0; i < lengthPSWD; i++) {
-            if (selectedChars.length > 0) {
-                let c = randomIntFromInterval(0, selectedChars.length - 1);
-                pswd += selectedChars[c];
+    } else {
+        let pswd = "";
+        for (i = 0; i < lengthPSWD; i++) {
+            if (selectedChars.length > 0) { // if the user has at least one preference selected
+                let c = randomNum(0, selectedChars.length - 1);
+                // Make the password appear one character at a time (extra animation)
+                setTimeout(function () {
+                    pswd += selectedChars[c];
+                    outputField.innerHTML = pswd;
+                }, i * 70); // delay between characters
             }
-            else {
-                pswd = "At least one checkbox must be selected"
+            else { // user does not have anything selected
+                let err = "At least one checkbox must be selected";
+                outputField.innerHTML = err;
+                break;
             }
-        }        
-        outputField.innerHTML = pswd;
+        }
     }
 }
+  

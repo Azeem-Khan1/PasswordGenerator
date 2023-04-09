@@ -4,31 +4,36 @@
     padding: 0;
 }
 
-body {
+.parentCont {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.childCont {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
+    align-items: center;
+    position: relative;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
+
 .logo {
-    position: absolute;
+    position: relative;
     width: 20vw;
-    left: 40vw;
-    right: 40vw;
-    top: 30px;
+    min-width: 250px;
+    margin-top: 30px;
 }
 
 .lengthPWD {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 70%;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 40%;
-    right: 40%;
-    top: 110px;
+    position: relative;
     text-align: center;
 }
 
@@ -39,6 +44,7 @@ p {
     color: white;
     margin: 15px;
     margin-bottom: 30px;
+    text-align: center;
 
 }
 
@@ -53,10 +59,7 @@ label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 270px;
-    width: 20vw;
-    left: 40vw;
+    position: relative;
 }
 
 .lengthPWD input {
@@ -88,11 +91,11 @@ input[type=number]::-webkit-outer-spin-button
     background-color:#c52b4c;
 }
 
-/* Customize the label (the container) */
 .container {
     display: block;
     position: relative;
-    padding-left: 35px;
+    left: 5%;
+    padding-left: 30px;
     margin-bottom: 20px;
     cursor: pointer;
     -webkit-user-select: none;
@@ -110,23 +113,24 @@ input[type=number]::-webkit-outer-spin-button
     transition-duration: 0.3s;
 }
 
-/* Create a custom checkbox */
+/* custom checkbox */
 .checkmark {
     position: absolute;
     top: 0;
     left: 0;
     height: 20px;
     width: 20px;
+    border-radius: 5px;
     background-color: #eee;
     transition-duration: 0.3s;
 }
 
-/* On mouse-over, add a grey background color */
+/* Peach bg on hover */
 .container:hover input ~ .checkmark {
     background-color: #c5536c;
 }
 
-/* When the checkbox is checked, add a blue background */
+/* Add red bg when checked */
 .container input:checked ~ .checkmark {
     background-color: #c52b4c;
 }
@@ -154,11 +158,8 @@ input[type=number]::-webkit-outer-spin-button
 }
 
 button {
-    position: absolute;
-    width: 15vw;
-    left: 42.5vw;
-    right: 42.5vw;
-    top: 530px;
+    position: relative;
+    width: 300px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     line-height: 130%;
     color: white;
@@ -167,26 +168,47 @@ button {
     outline: none;
     font-size: 14pt;
     background-color: #a31c39;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition-duration: 0.4s;
 }
+.buttonCont {
+    padding: none;
+    margin: none;
+    height: 50px;
+}
 button:hover {
     background-color: #c52b4c;
-    width: 17vw;
-    left: 41.5vw;
-    right: 41.5vw;
+    width: 350px;
     height: 50px;
-    top: 525px;
     font-size: 15pt;
 }
 #output {
-    position: absolute;
+    position: relative;
     text-align: center;
-    top: 620px;
     color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    width: 70vw;
-    left: 15vw;
-    right: 15vw;
+    width: 400px;
+    overflow-x: hidden;
+    overflow-y: none;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    margin-bottom: 30px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #a31c39;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c52b4c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5536c;
 }
