@@ -1,0 +1,192 @@
+* {
+    background-color: #8d021f;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.logo {
+    position: absolute;
+    width: 20vw;
+    left: 40vw;
+    right: 40vw;
+    top: 30px;
+}
+
+.lengthPWD {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 40%;
+    right: 40%;
+    top: 110px;
+    text-align: center;
+}
+
+p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 130%;
+    font-size: 16pt;
+    color: white;
+    margin: 15px;
+    margin-bottom: 30px;
+
+}
+
+label {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 130%;
+    color: white;
+}
+
+#params {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 270px;
+    width: 20vw;
+    left: 40vw;
+}
+
+.lengthPWD input {
+    width: 50px;
+    min-width: 30px;
+    outline: none;
+    height: 40px;
+    line-height: 1.65;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    background-color: #a31c39;
+    transition-duration: 0.3s;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.lengthPWD input:hover,
+.lengthPWD input:focus {
+    background-color:#c52b4c;
+}
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    transition-duration: 0.3s;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    transition-duration: 0.3s;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #c5536c;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #c52b4c;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+button {
+    position: absolute;
+    width: 15vw;
+    left: 42.5vw;
+    right: 42.5vw;
+    top: 530px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: 130%;
+    color: white;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 14pt;
+    background-color: #a31c39;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+button:hover {
+    background-color: #c52b4c;
+    width: 17vw;
+    left: 41.5vw;
+    right: 41.5vw;
+    height: 50px;
+    top: 525px;
+    font-size: 15pt;
+}
+#output {
+    position: absolute;
+    text-align: center;
+    top: 620px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 70vw;
+    left: 15vw;
+    right: 15vw;
+}
